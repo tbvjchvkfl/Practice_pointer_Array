@@ -1,19 +1,46 @@
 #include<iostream>
 
 
-int Sum(int x, int y)
-{
-	return x + y;
-}
-
 int main()
 {
-	int array[2][3];
+	int array[2][3]{ { 1,2,3 },{ 4,5,6 } };
 
-	int(*p)[3] = &array[0];
+	// int 타입을 가리키고 있는 포인터 변수 p는 원소를 3개를 가지고 있는 배열을 가리키고 있다.
+	// 해당 포인터 변수에 위 array라는 배열의 0번째 원소를 배정하였다.
+	int(*p)[3] = array;
 
+	std::cout << " =============" << std::endl;
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			
+			std::cout << &array[i][j] << std::endl;
+			
+		}
+	}
+	//std::cout << &array[0][0] << std::endl;
+	std::cout << " =============" << std::endl;
 
-	//std::cout << Sum(1, 2) << std::endl;
+	// p는 2차원 배열의 0번째 인덱스를 가리키고있는 포인터 변수의 이름이므로 int array[0][0]의 주소를 배정받은 변수이다.
+	std::cout << p << std::endl;
+
+	// *p는 2차원 배열의 0번째 인덱스를 가리키고있는 포인터이므로 int array[0][0]의 주소값을 가리키고 있다.
+	std::cout << *p << std::endl;
+
+	// p + 1은 p라는 변수가 가리키고 있는 배열에 인덱스 값에 1을 더해준 것과 같은 형태이므로 int array[1][0]의 주소를 배정 받은 상태이다.
+	std::cout << p + 1 << std::endl;
+	
+	// *(p + 1)은 p + 1이 배정 받은 주소 값을 가리키고 있는 포인터 이다.
+	std::cout << *(p + 1) << std::endl;
+
+	// *(p + 1)은 p가 배정 받은 배열의 인덱스에 하나를 더한 곳에 주소를 가리키고있는 포인터이다. 이곳에  +2를 해주면 다음 인덱스에 값이 들어가므로 int array[1][2]의 주소 값을 가리키고 있는 상태가 된다.
+	std::cout << *(p + 1) + 2 << std::endl;
+
+	// *(*p + 1)은 *p가 가리키고 있는 곳에 + 1을 해준 상태로 array[1][0]의 주소 값을 가리키고있다. 
+	// 이 상태에서 포인터가 하나 더 붙었으니 array[1][0] 주소 값이 담고 있는 값을 가리키게된다.
+	std::cout << *(*p + 1) << std::endl;
+	
 }
 
 
